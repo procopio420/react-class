@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
-
 import './App.css';
 import api from './services/api';
 
 import ProductList from './components/ProductList';
 import CartList from './components/CartList';
+import Header from './components/Header';
 
 function App() {
   const [list, setList] = useState(() => {
@@ -38,14 +38,19 @@ function App() {
   }
 
   return (
-    <section className='content'>
-      <ProductList function={handleClick} />
-      <CartList
-        list={list}
-        clearFunction={clearCart}
-        removeFunction={removeFromCart}
-      />
-    </section>
+    <div className="app-wrapper">
+      <section>
+        <Header />
+      </section>
+      <section className="content">
+        <ProductList function={handleClick} />
+        <CartList
+          list={list}
+          clearFunction={clearCart}
+          removeFunction={removeFromCart}
+        />
+      </section>
+    </div>
   );
 }
 
