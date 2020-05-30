@@ -6,7 +6,15 @@ const ProductCart = props => {
     <section className='item'>
       <h3 className='item-title'>{props.title}</h3>
       <img className='item-img' alt='' src={props.img} />
-      <button className='item-btn'>Adicionar ao carrinho!</button>
+      <button
+        onClick={props.function}
+        className='item-btn'
+        data-id={props.id}
+        data-title={props.title}
+        data-price={props.price}
+      >
+        Adicionar ao carrinho!
+      </button>
     </section>
   );
 };
