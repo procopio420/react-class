@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import api from './services/api';
 
@@ -6,7 +6,11 @@ import ProductList from './components/ProductList';
 import CartList from './components/CartList';
 
 function App() {
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(() => {
+    const storagedCart = localStorage.getItem('ShoppingCart');
+    if (storagedCart) return JSON.parse(storagedCart);
+    return [];
+  });
 
   async function handleClick(element) {
     const item = await api.get(`/items/${element.target.id}`);
@@ -17,6 +21,10 @@ function App() {
     };
     setList([...list, el]);
   }
+
+  useEffect(() => {
+    localStorage.setItem('ShoppingCart', JSON.stringify(list));
+  }, [list]);
 
   function clearCart() {
     setList([]);
