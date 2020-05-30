@@ -153,8 +153,8 @@ class Header extends React.Component {
     this.handleSearchURL = this.handleSearchURL.bind(this);
     this.handleInputSearch = this.handleInputSearch.bind(this);
     api
-    .get(`/sites/MLB/search?q=computador`)
-    .then(res => this.props.setProductsList(res.data.results));
+      .get(`/sites/MLB/search?q=computador`)
+      .then(res => this.props.setProductsList(res.data.results));
   }
 
   handleLogin() {
@@ -204,7 +204,10 @@ class Header extends React.Component {
           searchInput={this.state.searchInput}
         />
         <div className='user-cart-wrapper'>
-          <CartTotal priceTotal={400} itemsTotal={6} />
+          <CartTotal
+            priceTotal={this.props.total}
+            itemsTotal={this.props.list.length}
+          />
           <UserLogin
             handleInputChange={this.handleInputChange}
             nomeInput={this.state.nomeInput}
