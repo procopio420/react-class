@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './style.css';
 
 import { CartProduct } from '../CartProduct';
@@ -22,14 +22,7 @@ const CartList = props => {
 };
 
 const CartTotal = props => {
-  const [total, setTotal] = useState(0);
-
-  useEffect(() => {
-    const t = props.list.reduce((acc, el) => Number(el.price) + acc, 0);
-    setTotal(t);
-  }, [props.list]);
-
-  return <p className='cart-total'>Total: R$ {total}</p>;
+  return <p className='cart-total'>Total: R$ {props.total}</p>;
 };
 
 const Cart = props => {
@@ -37,7 +30,7 @@ const Cart = props => {
     <div className='cart'>
       <h4 className='cart-title'>Carrinho de compras</h4>
       <CartList list={props.list} removeItem={props.removeFunction} />
-      <CartTotal list={props.list} />
+      <CartTotal total={props.total} />
       <button onClick={props.clearFunction} className='cart-btn'>
         Limpar Carrinho
       </button>
