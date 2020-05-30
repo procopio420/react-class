@@ -13,6 +13,12 @@ function App() {
     if (storagedCart) return JSON.parse(storagedCart);
     return [];
   });
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    const t = list.reduce((acc, el) => Number(el.price) + acc, 0);
+    setTotal(t);
+  }, [list]);
 
   async function handleClick(element) {
     const item = await api.get(`/items/${element.target.id}`);
@@ -40,12 +46,13 @@ function App() {
   return (
     <div className="app-wrapper">
       <section>
-        <Header list={list} />
+        <Header total={total} list={list} />
       </section>
       <section className="content">
         <ProductList function={handleClick} />
         <CartList
           list={list}
+          total={total}
           clearFunction={clearCart}
           removeFunction={removeFromCart}
         />
