@@ -1,23 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ReactLoading from 'react-loading';
 
 import ProductCard from '../ProductCard';
-import api from '../../services/api';
 
 import './style.css';
 
 const ProductList = props => {
-  const [list, setList] = useState([]);
-
-  useEffect(() => {
-    api
-      .get('/sites/MLB/search?q=computador')
-      .then(res => setList(res.data.results));
-  }, []);
-
   return (
     <div className='products'>
-      {!list.length > 0 && (
+      {!props.list.length > 0 && (
         <ReactLoading
           type={'spin'}
           color={'green'}
@@ -25,7 +16,7 @@ const ProductList = props => {
           width={'50%'}
         />
       )}
-      {list.map(product => (
+      {props.list.map(product => (
         <ProductCard
           id={product.id}
           key={product.id}

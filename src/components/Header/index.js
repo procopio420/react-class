@@ -4,6 +4,8 @@ import './index.css';
 import SearchBar from './searchBar';
 import UserLogin from './userLogin';
 import CartTotal from './cartTotal';
+import api from '../../services/api';
+
 //Primeiros passos
 // function Header() {
 //   return (
@@ -141,7 +143,7 @@ class Header extends React.Component {
     super(props);
     this.state = {
       searchInput: '',
-      searchURL: '',
+      // searchURL: '',
       nomeInput: '',
       nome: '',
       logged: false,
@@ -150,6 +152,9 @@ class Header extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSearchURL = this.handleSearchURL.bind(this);
     this.handleInputSearch = this.handleInputSearch.bind(this);
+    api
+    .get(`/sites/MLB/search?q=computador`)
+    .then(res => this.props.setProductsList(res.data.results));
   }
 
   handleLogin() {
@@ -173,25 +178,32 @@ class Header extends React.Component {
 
   handleSearchURL(e) {
     e.preventDefault();
+    // this.setState(state => ({
+    //   searchURL: `https://api.mercadolibre.com/sites/MLA/search?q=${encodeURI(
+    //     state.searchInput,
+    //   )}`,
+    //   searchInput: '',
+    // }));
+    api
+      .get(`/sites/MLB/search?q=${this.state.searchInput}`)
+      .then(res => this.props.setProductsList(res.data.results));
+
     this.setState(state => ({
-      searchURL: `https://api.mercadolibre.com/sites/MLA/search?q=${encodeURI(
-        state.searchInput,
-      )}`,
       searchInput: '',
     }));
-    console.log(this.state.searchURL);
+    // console.log(this.state.searchInput);
   }
 
   render() {
     return (
       <header>
-        <img src={logo} alt="logo" id="logo" />
+        <img src={logo} alt='logo' id='logo' />
         <SearchBar
           handleSearchURL={this.handleSearchURL}
           handleInputSearch={this.handleInputSearch}
-          searchInput = {this.state.searchInput}
+          searchInput={this.state.searchInput}
         />
-        <div className="user-cart-wrapper">
+        <div className='user-cart-wrapper'>
           <CartTotal priceTotal={400} itemsTotal={6} />
           <UserLogin
             handleInputChange={this.handleInputChange}

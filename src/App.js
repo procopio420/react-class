@@ -8,17 +8,18 @@ import CartList from './components/CartList';
 import Header from './components/Header';
 
 function App() {
-  const [list, setList] = useState(() => {
+  const [cartList, setCartList] = useState(() => {
     const storagedCart = localStorage.getItem('ShoppingCart');
     if (storagedCart) return JSON.parse(storagedCart);
     return [];
   });
   const [total, setTotal] = useState(0);
+  const [productsList, setProductsList] = useState([]);
 
   useEffect(() => {
-    const t = list.reduce((acc, el) => Number(el.price) + acc, 0);
+    const t = cartList.reduce((acc, el) => Number(el.price) + acc, 0);
     setTotal(t);
-  }, [list]);
+  }, [cartList]);
 
   async function handleClick(element) {
     const item = await api.get(`/items/${element.target.id}`);
@@ -27,31 +28,31 @@ function App() {
       name: item.data.title,
       price: item.data.price,
     };
-    setList([...list, el]);
+    setCartList([...cartList, el]);
   }
 
   useEffect(() => {
-    localStorage.setItem('ShoppingCart', JSON.stringify(list));
-  }, [list]);
+    localStorage.setItem('ShoppingCart', JSON.stringify(cartList));
+  }, [cartList]);
 
   function clearCart() {
-    setList([]);
+    setCartList([]);
   }
 
   function removeFromCart(id) {
-    const newList = list.filter(el => el.id !== id);
-    setList(newList);
+    const newList = cartList.filter(el => el.id !== id);
+    setCartList(newList);
   }
 
   return (
     <div className="app-wrapper">
       <section>
-        <Header total={total} list={list} />
+        <Header total={total} list={cartList} setProductsList={setProductsList}/>
       </section>
       <section className="content">
-        <ProductList function={handleClick} />
+        <ProductList function={handleClick} list={productsList} />
         <CartList
-          list={list}
+          list={cartList}
           total={total}
           clearFunction={clearCart}
           removeFunction={removeFromCart}
