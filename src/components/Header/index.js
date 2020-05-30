@@ -192,7 +192,7 @@ class Header extends React.Component {
           searchInput = {this.state.searchInput}
         />
         <div className="user-cart-wrapper">
-          <CartTotal priceTotal={400} itemsTotal={6} />
+          <CartTotal priceTotal={this.props.total} itemsTotal={this.props.list.length} />
           <UserLogin
             handleInputChange={this.handleInputChange}
             nomeInput={this.state.nomeInput}
