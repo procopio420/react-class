@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import ReactLoading from 'react-loading';
+
 import ProductCard from '../ProductCard';
 import api from '../../services/api';
 
@@ -15,6 +17,14 @@ const ProductList = props => {
 
   return (
     <div className='products'>
+      {!list.length > 0 && (
+        <ReactLoading
+          type={'spin'}
+          color={'green'}
+          height={'50%'}
+          width={'50%'}
+        />
+      )}
       {list.map(product => (
         <ProductCard
           id={product.id}
