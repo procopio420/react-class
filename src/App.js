@@ -40,7 +40,7 @@ function App() {
   return (
     <div className="app-wrapper">
       <section>
-        <Header />
+        <Header list={list} />
       </section>
       <section className="content">
         <ProductList function={handleClick} />
