@@ -9,9 +9,7 @@ const ProductCart = props => {
       <button
         onClick={props.function}
         className='item-btn'
-        data-id={props.id}
-        data-title={props.title}
-        data-price={props.price}
+        id={props.id}
       >
         Adicionar ao carrinho!
       </button>

@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
 import './App.css';
+import api from './services/api'
 
 import ProductList from './components/ProductList';
 import CartList from './components/CartList';
 
 function App() {
   const [list, setList] = useState([]);
-  function handleClick(element) {
+  async function handleClick(element) {
+    const item = await api.get(`/items/${element.target.id}`)
     const el = {
-      id: element.target.dataset.id,
-      name: element.target.dataset.title,
-      price: element.target.dataset.price,
+      id: item.data.id,
+      name: item.data.title,
+      price: item.data.price,
     };
     setList([...list, el]);
+  }
+  function clearCart() {
+    setList([]);
   }
   return (
     <section className='content'>
       <ProductList function={handleClick} />
-      <CartList list={list} />
+      <CartList list={list} clearFunction={clearCart} />
     </section>
   );
 }

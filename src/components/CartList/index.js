@@ -37,7 +37,7 @@ const Cart = props => {
       <h4 className='cart-title'>Carrinho de compras</h4>
       <CartList list={props.list} />
       <CartTotal list={props.list} />
-      <button className='cart-btn'>Limpar Carrinho</button>
+      <button onClick={props.clearFunction} className='cart-btn'>Limpar Carrinho</button>
     </div>
   );
 };
