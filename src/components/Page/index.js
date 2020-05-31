@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './style.css';
 
-import Header from './Header';
-import LeftSide from './LeftSide';
-import RightSide from './RightSide';
+import Header from './components/Header';
+import LeftSide from './components/LeftSide';
+import RightSide from './components/RightSide';
 
 import api from '../../services/api';
 

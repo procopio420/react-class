@@ -1,13 +1,13 @@
 import React from 'react';
 
-import logo from '../../../media/marketplace-mercado-livre-3.png';
+import logo from '../../../../media/marketplace-mercado-livre-3.png';
 import './style.css';
 
 import SearchBar from './components/SearchBar';
 import UserLogin from './components/UserLogin';
 import CartTotal from './components/CartTotal';
 
-import api from '../../../services/api';
+import api from '../../../../services/api';
 
 //Primeiros passos
 // function Header() {
