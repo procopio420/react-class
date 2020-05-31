@@ -7,7 +7,7 @@ import RightSide from './RightSide';
 
 import api from '../../services/api';
 
-const Container = () => {
+const Page = () => {
   const [cartList, setCartList] = useState(() => {
     const storagedCart = localStorage.getItem('ShoppingCart');
 
@@ -73,4 +73,4 @@ const Container = () => {
   );
 };
 
-export default Container;
+export default Page;

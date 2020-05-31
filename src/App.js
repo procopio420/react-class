@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Container from './components/Container'
+import Page from './components/Page'
 
 function App() {
-  return <Container />
+  return <Page />
 }
 
 export default App;
