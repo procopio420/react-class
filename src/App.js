@@ -40,16 +40,21 @@ function App() {
   }
 
   function removeFromCart(id) {
-    const newList = cartList.filter(el => el.id !== id);
+    const removedElement = cartList.find(el => el.id === id);
+    const newList = cartList.filter(el => el !== removedElement);
     setCartList(newList);
   }
 
   return (
-    <div className="app-wrapper">
+    <div className='app-wrapper'>
       <section>
-        <Header total={total} list={cartList} setProductsList={setProductsList}/>
+        <Header
+          total={total}
+          list={cartList}
+          setProductsList={setProductsList}
+        />
       </section>
-      <section className="content">
+      <section className='content'>
         <ProductList function={handleClick} list={productsList} />
         <CartList
           list={cartList}
