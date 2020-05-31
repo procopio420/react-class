@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './style.css'
+
 function CartTotal(props) {
   return (
       <div className = 'cart-header'>

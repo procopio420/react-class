@@ -8,7 +8,7 @@ import './style.css';
 const ProductList = props => {
   return (
     <div className='products'>
-      {!props.list.length > 0 && (
+      {!props.productsList.length > 0 && (
         <ReactLoading
           type={'spin'}
           color={'green'}
@@ -16,14 +16,14 @@ const ProductList = props => {
           width={'50%'}
         />
       )}
-      {props.list.map(product => (
+      {props.productsList.map(product => (
         <ProductCard
           id={product.id}
           key={product.id}
           title={product.title}
           price={product.price}
           img={product.thumbnail}
-          function={props.function}
+          addElementFunction={props.addElementFunction}
         />
       ))}
     </div>

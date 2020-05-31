@@ -3,17 +3,17 @@ import './style.css';
 
 import { CartProduct } from '../CartProduct';
 
-const CartList = props => {
+const List = props => {
   return (
     <ol>
-      {props.list.map(el => {
+      {props.cartList.map(el => {
         return (
           <CartProduct
             key={el.id + Math.round(Math.random() * 10000)}
             id={el.id}
             name={el.name}
             price={el.price}
-            removeItem={props.removeItem}
+            removeItem={props.removeElementFunction}
           />
         );
       })}
@@ -21,21 +21,21 @@ const CartList = props => {
   );
 };
 
-const CartTotal = props => {
-  return <p className='cart-total'>Total: R$ {props.total}</p>;
+const Total = props => {
+  return <p className='cart-total'>Total: R$ {props.totalFromCart}</p>;
 };
 
-const Cart = props => {
+const CartList = props => {
   return (
     <div className='cart'>
       <h4 className='cart-title'>Carrinho de compras</h4>
-      <CartList list={props.list} removeItem={props.removeFunction} />
-      <CartTotal total={props.total} />
-      <button onClick={props.clearFunction} className='cart-btn'>
+      <List cartList={props.cartList} removeElementFunction={props.removeElementFunction} />
+      <Total totalFromCart={props.totalFromCart} />
+      <button onClick={props.clearCartFunction} className='cart-btn'>
         Limpar Carrinho
       </button>
     </div>
   );
 };
 
-export default Cart;
+export default CartList;

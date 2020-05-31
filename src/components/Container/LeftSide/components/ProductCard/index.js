@@ -7,7 +7,7 @@ const ProductCart = props => {
       <h3 className='item-title'>{props.title}</h3>
       <img className='item-img' alt='' src={props.img} />
       <button
-        onClick={props.function}
+        onClick={props.addElementFunction}
         className='item-btn'
         id={props.id}
       >

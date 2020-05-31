@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './style.css'
+
 function SearchBar(props) {
   return (
     <form className = 'search-form'>

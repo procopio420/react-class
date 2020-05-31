@@ -1,10 +1,13 @@
 import React from 'react';
-import logo from '../../media/marketplace-mercado-livre-3.png';
-import './index.css';
-import SearchBar from './searchBar';
-import UserLogin from './userLogin';
-import CartTotal from './cartTotal';
-import api from '../../services/api';
+
+import logo from '../../../media/marketplace-mercado-livre-3.png';
+import './style.css';
+
+import SearchBar from './components/SearchBar';
+import UserLogin from './components/UserLogin';
+import CartTotal from './components/CartTotal';
+
+import api from '../../../services/api';
 
 //Primeiros passos
 // function Header() {
@@ -205,8 +208,8 @@ class Header extends React.Component {
         />
         <div className='user-cart-wrapper'>
           <CartTotal
-            priceTotal={this.props.total}
-            itemsTotal={this.props.list.length}
+            priceTotal={this.props.totalFromCart}
+            itemsTotal={this.props.cartList.length}
           />
           <UserLogin
             handleInputChange={this.handleInputChange}
