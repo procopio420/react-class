@@ -30,6 +30,7 @@ const CartList = props => {
     <div className='cart'>
       <h4 className='cart-title'>Carrinho de compras</h4>
       <List cartList={props.cartList} removeElementFunction={props.removeElementFunction} />
+      <br/>
       <Total totalFromCart={props.totalFromCart} />
       <button onClick={props.clearCartFunction} className='cart-btn'>
         Limpar Carrinho

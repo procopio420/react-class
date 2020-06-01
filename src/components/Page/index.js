@@ -20,12 +20,25 @@ const Page = () => {
 
   const [total, setTotal] = useState(0);
   const [productsList, setProductsList] = useState([]);
+  const [category, setCategory] = useState('');
+
+  useEffect(() => {
+    api
+      .get(`/sites/MLB/search?category=MLB5672`)
+      .then(res => setProductsList(res.data.results));
+  }, []);
+
+  useEffect(() => {
+    if (category !== '') {
+      setProductsList([]);
+      api
+        .get(`/sites/MLB/search?category=${category}`)
+        .then(res => setProductsList(res.data.results));
+    }
+  }, [category]);
 
   useEffect(() => {
     localStorage.setItem('ShoppingCart', JSON.stringify(cartList));
-  }, [cartList]);
-
-  useEffect(() => {
     const t = cartList.reduce((acc, el) => Number(el.price) + acc, 0);
     setTotal(t);
   }, [cartList]);
@@ -51,7 +64,7 @@ const Page = () => {
   }
 
   return (
-    <>
+    <div className='container-fluid'>
       <Header
         totalFromCart={total}
         cartList={cartList}
@@ -61,6 +74,9 @@ const Page = () => {
         <LeftSide
           addElementFunction={handleClick}
           productsList={productsList}
+          setProductsList={setProductsList}
+          category={category}
+          setCategory={setCategory}
         />
         <RightSide
           cartList={cartList}
@@ -69,7 +85,7 @@ const Page = () => {
           removeElementFunction={removeFromCart}
         />
       </section>
-    </>
+    </div>
   );
 };
 

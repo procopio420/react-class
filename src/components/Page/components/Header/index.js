@@ -146,7 +146,7 @@ class Header extends React.Component {
     super(props);
     this.state = {
       searchInput: '',
-      // searchURL: '',
+      // searchURL: '', 
       nomeInput: '',
       nome: '',
       logged: false,
@@ -155,9 +155,6 @@ class Header extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSearchURL = this.handleSearchURL.bind(this);
     this.handleInputSearch = this.handleInputSearch.bind(this);
-    api
-      .get(`/sites/MLB/search?q=computador`)
-      .then(res => this.props.setProductsList(res.data.results));
   }
 
   handleLogin() {
