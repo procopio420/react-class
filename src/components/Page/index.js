@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './style.css';
 
 import Header from './components/Header';
 import LeftSide from './components/LeftSide';
+import Body from './components/Body';
 import RightSide from './components/RightSide';
+import Footer from './components/Footer'
 
 import api from '../../services/api';
 
@@ -40,7 +41,7 @@ const Page = () => {
   useEffect(() => {
     localStorage.setItem('ShoppingCart', JSON.stringify(cartList));
     const t = cartList.reduce((acc, el) => Number(el.price) + acc, 0);
-    setTotal(t);
+    setTotal(t.toFixed(2));
   }, [cartList]);
 
   async function handleClick(element) {
@@ -64,19 +65,22 @@ const Page = () => {
   }
 
   return (
-    <div className='container-fluid'>
+    <div>
       <Header
         totalFromCart={total}
         cartList={cartList}
         setProductsList={setProductsList}
       />
-      <section className='content'>
+      <div className='row justify-content-center'>
         <LeftSide
-          addElementFunction={handleClick}
-          productsList={productsList}
           setProductsList={setProductsList}
           category={category}
           setCategory={setCategory}
+        />
+        <Body
+          addElementFunction={handleClick}
+          productsList={productsList}
+          setProductsList={setProductsList}
         />
         <RightSide
           cartList={cartList}
@@ -84,7 +88,8 @@ const Page = () => {
           clearCartFunction={clearCart}
           removeElementFunction={removeFromCart}
         />
-      </section>
+      </div>
+      <Footer/>
     </div>
   );
 };

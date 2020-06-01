@@ -1,6 +1,5 @@
 .products {
   display: flex;
-  flex-basis: 60%;
   flex-wrap: wrap;
   justify-content: center;
 }

@@ -146,7 +146,7 @@ class Header extends React.Component {
     super(props);
     this.state = {
       searchInput: '',
-      // searchURL: '', 
+      // searchURL: '',
       nomeInput: '',
       nome: '',
       logged: false,
@@ -157,14 +157,24 @@ class Header extends React.Component {
     this.handleInputSearch = this.handleInputSearch.bind(this);
   }
 
-  handleLogin() {
-    this.setState(state => {
-      return {
-        logged: !state.logged,
-        nome: state.nomeInput,
-        nomeInput: '',
-      };
-    });
+  handleLogin(e) {
+    e.preventDefault();
+    if (!this.state.logged && this.state.nomeInput) {
+      this.setState(state => {
+        return {
+          logged: !state.logged,
+          nome: state.nomeInput,
+          nomeInput: '',
+        };
+      });
+    }
+    if(this.state.logged) {
+      this.setState(state => {
+        return {
+          logged: !state.logged,
+        };
+      });
+    }
   }
 
   handleInputChange(e) {
@@ -196,7 +206,7 @@ class Header extends React.Component {
 
   render() {
     return (
-      <header>
+      <header className="row">
         <img src={logo} alt='logo' id='logo' />
         <SearchBar
           handleSearchURL={this.handleSearchURL}

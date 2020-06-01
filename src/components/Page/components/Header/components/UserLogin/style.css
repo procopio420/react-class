@@ -1,7 +1,3 @@
-.hide {
-  display: none;
-}
-
-.user-login {
-  display: flex;
+.form-border {
+  border-radius: 5px 0 0 5px;
 }

@@ -1,27 +1,35 @@
-import React from 'react'
+import React from 'react';
 
-import './style.css'
+import './style.css';
 
 function UserLogin(props) {
-  const welcomeMessage = () => {
-    if (props.logged) {
-      return <p>{`Olá ${props.nome}`}</p>;
-    }
-  };
   return (
-    <div className = 'user-login'>
-      {welcomeMessage()}
-      <input
-        placeholder="nome"
-        onChange={props.handleInputChange}
-        value={props.nomeInput}
-        className = {props.logged ? 'hide' : 'login-input'}
-      ></input>
-      <button onClick={props.handleLogin}>
-        {props.logged ? 'Sair' : 'Entrar'}
-      </button>
+    <div className='user-login row'>
+      {!props.logged ? (
+        <form className='form-inline'>
+          <input
+            className='form-control form-border'
+            placeholder='Nome'
+            onChange={props.handleInputChange}
+            value={props.nomeInput}
+          />
+          <button
+            className='btn btn-primary btn-border'
+            onClick={props.handleLogin}
+          >
+            Entrar
+          </button>
+        </form>
+      ) : (
+        <>
+          <p>Olá, {props.nome}</p>
+          <button className='btn btn-primary ml-4' onClick={props.handleLogin}>
+            Sair
+          </button>
+        </>
+      )}
     </div>
   );
 }
 
-export default UserLogin
+export default UserLogin;

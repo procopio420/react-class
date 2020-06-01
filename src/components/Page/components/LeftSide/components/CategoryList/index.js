@@ -9,7 +9,11 @@ const CategoryItem = props => {
   }
 
   return (
-    <li className='category-item' id={props.category.id} onClick={categorySet}>
+    <li
+      className='category-item list-group-item list-group-item-action'
+      id={props.category.id}
+      onClick={categorySet}
+    >
       {props.category.name}
     </li>
   );
@@ -23,18 +27,21 @@ const CategoryList = props => {
   }, []);
 
   return (
-    <div>
-      <h2>Categorias</h2>
-      <br />
-      <ul>
-        {categoryList.map(cat => (
-          <CategoryItem
-            setCategory={props.setCategory}
-            key={cat.id}
-            category={cat}
-          />
-        ))}
-      </ul>
+    <div className='col-2'>
+      <div className='card'>
+        <div className='card-header'>
+          <h2 className='text-center my-3'>Categorias</h2>
+        </div>
+        <ul className='list-group list-group-flush'>
+          {categoryList.map(cat => (
+            <CategoryItem
+              setCategory={props.setCategory}
+              key={cat.id}
+              category={cat}
+            />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

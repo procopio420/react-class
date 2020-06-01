@@ -5,7 +5,12 @@ import { CartProduct } from '../CartProduct';
 
 const List = props => {
   return (
-    <ol>
+    <ol className='list-group list-group-flush'>
+      {!props.cartList.length && (
+        <li className='list-group-item list-group-item-action text-center'>
+          Seu carrinho está vazio :(
+        </li>
+      )}
       {props.cartList.map(el => {
         return (
           <CartProduct
@@ -27,14 +32,22 @@ const Total = props => {
 
 const CartList = props => {
   return (
-    <div className='cart'>
-      <h4 className='cart-title'>Carrinho de compras</h4>
-      <List cartList={props.cartList} removeElementFunction={props.removeElementFunction} />
-      <br/>
-      <Total totalFromCart={props.totalFromCart} />
-      <button onClick={props.clearCartFunction} className='cart-btn'>
-        Limpar Carrinho
-      </button>
+    <div className='col-2'>
+      <div className='card'>
+        <div className='card-header'>
+          <h4 className='cart-title text-center'>Carrinho de compras</h4>
+        </div>
+        <List
+          cartList={props.cartList}
+          removeElementFunction={props.removeElementFunction}
+        />
+        <div className='card-footer text-center'>
+          <Total totalFromCart={props.totalFromCart} />
+          <button onClick={props.clearCartFunction} className='btn btn-primary'>
+            Limpar Carrinho
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
